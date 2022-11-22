@@ -1,0 +1,34 @@
+name: Create and publish a Docker image to DockerHub
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name : docker login
+      env: 
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+      run: |
+        docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
+
+    - name: Set Tag Value with Date
+      id: step_one
+      run: |
+        echo "action_state="$(date +%Y-%m-%d_%H-%M-%S) >> $GITHUB_ENV
+    - name: Use the value
+      id: step_two
+      run: |
+        echo "${{ env.action_state }}" # This will output 'date'
+
+    - name: Build the Docker image
+      run: |
+       docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:latest
+    - name: Push the Docker image
+      run: |
+       docker push ayhans/docker-image-apache2-alpine-01:latest
