@@ -6,4 +6,4 @@ It pushes to ayhans/docker-image-apache2-alpine-02 (docker hub)
 
 and 
 
-ghcr.io/ayhansevimli/docker-image-apache2-alpine-01:main
+ghcr.io/ayhansevimli/docker-image-apache2-alpine-02:main
