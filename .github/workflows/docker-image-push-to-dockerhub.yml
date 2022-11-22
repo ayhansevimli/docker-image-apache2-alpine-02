@@ -28,7 +28,7 @@ jobs:
 
     - name: Build the Docker image
       run: |
-       docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:latest
+       docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-02:latest
     - name: Push the Docker image
       run: |
-       docker push ayhans/docker-image-apache2-alpine-01:latest
+       docker push ayhans/docker-image-apache2-alpine-02:latest
